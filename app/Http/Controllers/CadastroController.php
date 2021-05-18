@@ -72,11 +72,8 @@ class CadastroController extends Controller
 
         if($request->hasFile('curriculo') && $request->file('curriculo')->isValid()) {
 
-            $nameFileCurriculo = public_path('curriculos/') . $request->curriculo->getClientOriginalName();
-            if(!is_dir(public_path('curriculos/'))){
-                \File::makeDirectory(public_path('curriculos/'));
-            }
-            Storage::disk('do_spaces')->putFileAs('curriculos/', $request->curriculo, $request->curriculo->getClientOriginalName(), 'public');
+            $nameFileCurriculo = public_path('curriculos\\') . $request->curriculo->getClientOriginalName();
+            $request->file('curriculo')->storeAs('curriculos', $request->curriculo->getClientOriginalName(), 'public');
 
         }else{
             $nameFileCurriculo = "null";
@@ -116,7 +113,7 @@ class CadastroController extends Controller
 
         if($request->hasFile('curriculo') && $request->file('curriculo')->isValid()) {
             $nameFileCurriculo = storage_path() . $request->curriculo->getClientOriginalName();
-            $request->file('photo')->store('curriculos', $request->curriculo->getClientOriginalName());
+            $request->file('curriculo')->storeAs('curriculos', $request->curriculo->getClientOriginalName(), 'public');
         }else{
             $nameFileCurriculo = "null";
         }
