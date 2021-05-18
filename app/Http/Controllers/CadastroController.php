@@ -51,7 +51,7 @@ class CadastroController extends Controller
             'email' => 'required',
             'telefone' => 'required',
             'endereco' => 'required',
-            'curriculo' => 'required'
+            'curriculo' => 'required|mimes:pdf,doc,docx,txt|max:500'
 
         ]);
 
