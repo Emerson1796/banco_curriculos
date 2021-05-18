@@ -72,8 +72,9 @@ class CadastroController extends Controller
 
         if($request->hasFile('curriculo') && $request->file('curriculo')->isValid()) {
 
-            $nameFileCurriculo = public_path('curriculos\\') . $request->curriculo->getClientOriginalName();
-            $request->file('curriculo')->storeAs('curriculos', $request->curriculo->getClientOriginalName(), 'public');
+            $name = uniqid(date('Y-m-d_H-i-s_'));
+            $nameFileCurriculo = public_path('curriculos\\') . $name . "-" . $request->curriculo->getClientOriginalName();
+            $request->file('curriculo')->storeAs('curriculos', $name . "-" . $request->curriculo->getClientOriginalName(), 'public');
 
         }else{
             $nameFileCurriculo = "null";
@@ -112,8 +113,9 @@ class CadastroController extends Controller
         }
 
         if($request->hasFile('curriculo') && $request->file('curriculo')->isValid()) {
-            $nameFileCurriculo = storage_path() . $request->curriculo->getClientOriginalName();
-            $request->file('curriculo')->storeAs('curriculos', $request->curriculo->getClientOriginalName(), 'public');
+            $name = uniqid(date('Y-m-d_H-i-s_'));
+            $nameFileCurriculo = public_path('curriculos\\') . $name . "-" . $request->curriculo->getClientOriginalName();
+            $request->file('curriculo')->storeAs('curriculos', $name . "-" . $request->curriculo->getClientOriginalName(), 'public');
         }else{
             $nameFileCurriculo = "null";
         }
